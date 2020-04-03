@@ -7,19 +7,20 @@
 			<ng-container matColumnDef="color">
 				<th *matHeaderCellDef mat-header-cell></th>
 				<td *matCellDef="let task" [style.background-color]="getPriorityColor(task)"
+				    class="col-color"
 				    mat-cell></td>
 			</ng-container>
 			
 			<ng-container matColumnDef="id">
 				<th *matHeaderCellDef mat-header-cell></th>
-				<td *matCellDef="let index = index;" mat-cell>
+				<td *matCellDef="let index = index;" class="col-id" mat-cell>
 					{{index + 1}}
 				</td>
 			</ng-container>
 			
 			<ng-container matColumnDef="title">
 				<th *matHeaderCellDef mat-header-cell>Name</th>
-				<td *matCellDef="let task" [class.completed]="task.completed" mat-cell>
+				<td *matCellDef="let task" [class.completed]="task.completed" class="col-title" mat-cell>
 					{{task.title}}
 				</td>
 			</ng-container>
@@ -27,6 +28,7 @@
 			<ng-container matColumnDef="date">
 				<th *matHeaderCellDef mat-header-cell>Expiration date</th>
 				<td *matCellDef="let task" [ngClass]="{'completed': task.completed, 'no-value': task.date == null}"
+				    class="col-date"
 				    mat-cell>
 					{{task.date | date : 'medium'}}
 				</td>
@@ -35,6 +37,7 @@
 			<ng-container matColumnDef="priority">
 				<th *matHeaderCellDef mat-header-cell>Priority</th>
 				<td *matCellDef="let task" [ngClass]="{'completed': task.completed, 'no-value': task.priority == null}"
+				    class="col-priority"
 				    mat-cell>
 					{{task.priority ? task.priority.title : 'Empty'}}
 				</td>
@@ -44,6 +47,7 @@
 				<th *matHeaderCellDef mat-header-cell>Category</th>
 				<td *matCellDef="let task"
 				    [ngClass]="{'completed': task.completed, 'no-value': task.category == null, 'link': !task.completed && task.category}"
+				    class="col-category"
 				    mat-cell>
 					{{task.category ? task.category.title : 'Empty'}}
 				</td>
@@ -55,4 +59,3 @@
 		</table>
 	</div>
 </div>
-
