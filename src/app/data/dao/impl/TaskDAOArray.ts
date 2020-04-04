@@ -1,8 +1,9 @@
 import {TaskDAO} from '../interface/TaskDAO';
 import {Category} from '../../../model/Category';
 import {Priority} from '../../../model/Priority';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Task} from '../../../model/Task';
+import {TestData} from '../../TestData';
 
 export class TaskDAOArray implements TaskDAO {
 
@@ -15,11 +16,11 @@ export class TaskDAOArray implements TaskDAO {
     }
 
     get(id: number): Observable<Task> {
-        return undefined;
+        return of(TestData.tasks.find(task => task.id === id));
     }
 
     getAll(): Observable<Task[]> {
-        return undefined;
+        return of(TestData.tasks);
     }
 
     getCompletedCountInCategory(category: Category): Observable<number> {

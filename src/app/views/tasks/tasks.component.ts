@@ -23,7 +23,7 @@ export class TasksComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.dataHandler.taskSubject.subscribe(tasks => this.tasks = tasks);
+        this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
 
         this.dataSource = new MatTableDataSource();
         this.refreshTable();
@@ -49,7 +49,7 @@ export class TasksComponent implements OnInit, AfterViewInit {
         this.dataSource.data = this.tasks;
 
         this.addTableObjects();
-        
+
         this.dataSource.sortingDataAccessor = (task, colName) => {
             switch (colName) {
                 case 'priority':
