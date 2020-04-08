@@ -18,8 +18,13 @@ export class TasksComponent implements OnInit {
     @ViewChild(MatPaginator, {static: false}) private paginator: MatPaginator;
     @ViewChild(MatSort, {static: false}) private sort: MatSort;
 
-    @Input()
     private tasks: Task[];
+
+    @Input('tasks')
+    private set setTasks(tasks: Task[]) {
+        this.tasks = tasks;
+        this.fillTable();
+    }
 
     constructor(private dataHandler: DataHandlerService) {
     }
@@ -42,6 +47,11 @@ export class TasksComponent implements OnInit {
     }
 
     private fillTable() {
+
+        if (!this.dataSource) {
+            return;
+        }
+
         this.dataSource.data = this.tasks;
 
         this.addTableObjects();
