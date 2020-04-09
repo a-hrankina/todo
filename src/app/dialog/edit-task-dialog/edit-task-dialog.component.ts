@@ -23,8 +23,6 @@ export class EditTaskDialogComponent implements OnInit {
   ngOnInit() {
     this.task = this.data[0];
     this.dialogTitle = this.data[1];
-    console.log(this.task);
-    console.log(this.dialogTitle);
   }
 
 }
