@@ -4,25 +4,38 @@ import {DataHandlerService} from '../../service/data-handler.service';
 import {Task} from '../../model/Task';
 
 @Component({
-  selector: 'app-edit-task-dialog',
-  templateUrl: './edit-task-dialog.component.html',
-  styleUrls: ['./edit-task-dialog.component.css']
+    selector: 'app-edit-task-dialog',
+    templateUrl: './edit-task-dialog.component.html',
+    styleUrls: ['./edit-task-dialog.component.css']
 })
 export class EditTaskDialogComponent implements OnInit {
 
-  private dialogTitle: string;
-  private task: Task;
+    private dialogTitle: string;
+    private task: Task;
+    private tmpTitle: string;
 
-  constructor(
-      private dialogRef: MatDialogRef<EditTaskDialogComponent>,
-      @Inject(MAT_DIALOG_DATA) private data: [Task, string],
-      private dataHandler: DataHandlerService,
-      private dialog: MatDialog
-  ) { }
+    constructor(
+        private dialogRef: MatDialogRef<EditTaskDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) private data: [Task, string],
+        private dataHandler: DataHandlerService,
+        private dialog: MatDialog
+    ) {
+    }
 
-  ngOnInit() {
-    this.task = this.data[0];
-    this.dialogTitle = this.data[1];
-  }
+    ngOnInit() {
+        this.task = this.data[0];
+        this.dialogTitle = this.data[1];
 
+        this.tmpTitle = this.task.title;
+    }
+
+    private onConfirm(): void {
+        this.task.title = this.tmpTitle;
+
+        this.dialogRef.close(this.task);
+    }
+
+    private onCancel(): void {
+        this.dialogRef.close(null);
+    }
 }

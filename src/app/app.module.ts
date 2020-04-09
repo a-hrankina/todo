@@ -4,9 +4,19 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {CategoriesComponent} from './views/categories/categories.component';
 import {TasksComponent} from './views/tasks/tasks.component';
-import {MatDialogModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EditTaskDialogComponent} from './dialog/edit-task-dialog/edit-task-dialog.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +32,12 @@ import {EditTaskDialogComponent} from './dialog/edit-task-dialog/edit-task-dialo
         MatSortModule,
         MatPaginatorModule,
         BrowserAnimationsModule,
-        MatDialogModule
+        MatDialogModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule
     ],
     providers: [],
     entryComponents: [
