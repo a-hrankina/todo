@@ -32,6 +32,9 @@ export class AppComponent implements OnInit {
             null,
             null
         ).subscribe(tasks => this.tasks = tasks);
-        console.log(this.tasks);
+    }
+
+    onUpdateTask(task: Task) {
+        console.log(task);
     }
 }
