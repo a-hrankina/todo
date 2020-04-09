@@ -15,6 +15,16 @@
 			<mat-icon>clear</mat-icon>
 		</button>
 	</mat-form-field>
+	
+	<mat-form-field>
+		<mat-label>Category</mat-label>
+		<mat-select [(ngModel)]="tmpCategory">
+			<mat-option [value]="null">None</mat-option>
+			<mat-option *ngFor="let category of categories" [value]="category">
+				{{category.title}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
 	<button
