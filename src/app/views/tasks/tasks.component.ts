@@ -3,7 +3,8 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angula
 import {Task} from '../../model/Task';
 import {DataHandlerService} from '../../service/data-handler.service';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator, MatSort} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort} from '@angular/material';
+import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-dialog.component';
 
 @Component({
     selector: 'app-tasks',
@@ -29,7 +30,8 @@ export class TasksComponent implements OnInit {
     @Output()
     updateTask = new EventEmitter<Task>();
 
-    constructor(private dataHandler: DataHandlerService) {
+    constructor(private dataHandler: DataHandlerService,
+                private dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -49,7 +51,7 @@ export class TasksComponent implements OnInit {
         return '#fff';
     }
 
-    private fillTable() {
+    private fillTable(): void {
 
         if (!this.dataSource) {
             return;
@@ -74,12 +76,17 @@ export class TasksComponent implements OnInit {
 
     }
 
-    private addTableObjects() {
+    private addTableObjects(): void {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     }
 
-    private onClickTask(task: Task) {
-        this.updateTask.emit(task);
+    private openEditTaskDialog(task: Task): void {
+        const dialogRef = this.dialog.open(
+            EditTaskDialogComponent,
+            {data: [task, 'Task Editing'], autoFocus: false}
+        );
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }
