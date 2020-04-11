@@ -6,10 +6,12 @@ import {CategoriesComponent} from './views/categories/categories.component';
 import {TasksComponent} from './views/tasks/tasks.component';
 import {
     MatButtonModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatNativeDateModule,
     MatOptionModule,
     MatPaginatorModule,
     MatSelectModule,
@@ -20,6 +22,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EditTaskDialogComponent} from './dialog/edit-task-dialog/edit-task-dialog.component';
 import {FormsModule} from '@angular/forms';
 import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
+import {TaskDatePipe} from './pipe/task-date.pipe';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.com
         CategoriesComponent,
         TasksComponent,
         EditTaskDialogComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        TaskDatePipe
     ],
     imports: [
         BrowserModule,
@@ -43,7 +47,9 @@ import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.com
         MatButtonModule,
         MatIconModule,
         MatOptionModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     providers: [],
     entryComponents: [
