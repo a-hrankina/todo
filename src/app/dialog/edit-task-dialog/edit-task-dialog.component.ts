@@ -73,4 +73,13 @@ export class EditTaskDialogComponent implements OnInit {
             }
         });
     }
+
+    private complete(): void {
+        this.dialogRef.close('complete');
+    }
+
+    private activate(): void {
+        this.dialogRef.close('activate');
+    }
+    
 }

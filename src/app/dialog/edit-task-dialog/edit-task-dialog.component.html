@@ -37,12 +37,18 @@
 	</mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-	<button
-			(click)="onConfirm()" [disabled]="inputTitle.value.trim().length == 0"
-			color="primary"
-			mat-raised-button>
-		Save
-	</button>
-	<button (click)="onCancel()" mat-raised-button>Cancel</button>
-	<button (click)="delete()" mat-button class="red">Delete task</button>
+	<div class="col-md-5 col-12">
+		<button
+				(click)="onConfirm()" [disabled]="inputTitle.value.trim().length == 0"
+				color="primary"
+				mat-raised-button>
+			Save
+		</button>
+		<button (click)="onCancel()" mat-raised-button>Cancel</button>
+	</div>
+	<div class="col-md-7 col-12 text-right">
+		<button (click)="complete()" *ngIf="!task.completed" mat-button class="green">Complete task</button>
+		<button (click)="activate()" *ngIf="task.completed" mat-button class="green">Activate task</button>
+		<button (click)="delete()" mat-button class="red">Delete task</button>
+	</div>
 </mat-dialog-actions>
