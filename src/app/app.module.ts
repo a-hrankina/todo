@@ -23,6 +23,7 @@ import {EditTaskDialogComponent} from './dialog/edit-task-dialog/edit-task-dialo
 import {FormsModule} from '@angular/forms';
 import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
 import {TaskDatePipe} from './pipe/task-date.pipe';
+import {EditCategoryDialogComponent} from './dialog/edit-category-dialog/edit-category-dialog.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {TaskDatePipe} from './pipe/task-date.pipe';
         TasksComponent,
         EditTaskDialogComponent,
         ConfirmDialogComponent,
-        TaskDatePipe
+        TaskDatePipe,
+        EditCategoryDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -54,7 +56,8 @@ import {TaskDatePipe} from './pipe/task-date.pipe';
     providers: [],
     entryComponents: [
         EditTaskDialogComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        EditCategoryDialogComponent
     ],
     bootstrap: [AppComponent]
 })

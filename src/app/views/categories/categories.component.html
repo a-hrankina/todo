@@ -12,10 +12,19 @@
 				</a>
 			</li>
 			<div class="line"></div>
-			<li *ngFor="let category of categories" (click)="showTasksByCategory(category)" class="nav-item pointer"
-			    [class.active]="selectedCategory === category">
+			<li *ngFor="let category of categories; let index = index "
+			    [class.active]="category === selectedCategory"
+			    (click)="showTasksByCategory(category)"
+			    (mouseleave)="showEditIcon(null)"
+			    (mouseenter)="showEditIcon(index)"
+			    class="nav-item pointer">
 				<a class="nav-link">
-					<p>{{category.title}}</p>
+					<span class="category-title">{{category.title}}</span>
+					<span class="edit-category-icon-area">
+						<mat-icon *ngIf="indexMouseMove === index"
+						          (click)="$event.stopPropagation(); openEditDialog(category)"
+						          class="edit-category-icon">edit</mat-icon>
+                    </span>
 				</a>
 			</li>
 		</ul>
