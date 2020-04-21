@@ -24,7 +24,7 @@
 		<button mat-raised-button (click)="onCancel()">Cancel</button>
 	</div>
 	<div class="col-12 text-center">
-		<button mat-button (click)="delete()" class="red">Delete</button>
+		<button *ngIf="canDelete()" mat-button (click)="delete()" class="red">Delete</button>
 	</div>
 </mat-dialog-actions>
 

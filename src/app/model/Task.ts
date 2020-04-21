@@ -7,8 +7,8 @@ export class Task extends BaseEntity {
     priority?: Priority;
     category?: Category;
     date?: Date;
-    
-    constructor(id: number, title: string, completed: boolean, priority: Priority, category: Category, date: Date) {
+
+    constructor(id: number, title: string, completed: boolean, priority?: Priority, category?: Category, date?: Date) {
         super(id, title);
         this.completed = completed;
         this.priority = priority;

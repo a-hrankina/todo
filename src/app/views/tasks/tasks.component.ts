@@ -8,6 +8,7 @@ import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-d
 import {Priority} from '../../model/Priority';
 import {Category} from '../../model/Category';
 import {ConfirmDialogComponent} from '../../dialog/confirm-dialog/confirm-dialog.component';
+import {OperationType} from '../../dialog/OperationType';
 
 @Component({
     selector: 'app-tasks',
@@ -36,8 +37,14 @@ export class TasksComponent implements OnInit {
         this.priorities = priorities;
     }
 
+    @Input()
+    selectedCategory: Category;
+
     @Output()
     selectCategory = new EventEmitter<Category>();
+
+    @Output()
+    addTask = new EventEmitter<Task>();
 
     @Output()
     updateTask = new EventEmitter<Task>();
@@ -109,10 +116,10 @@ export class TasksComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
     }
 
-    private openEditTaskDialog(task: Task): void {
+    private openEditDialog(task: Task): void {
         const dialogRef = this.dialog.open(
             EditTaskDialogComponent,
-            {data: [task, 'Edit Task'], autoFocus: false}
+            {data: [task, 'Edit Task', OperationType.EDIT], autoFocus: false}
         );
 
         dialogRef.afterClosed().subscribe(result => {
@@ -146,7 +153,7 @@ export class TasksComponent implements OnInit {
             maxWidth: '500px',
             data: {
                 dialogTitle: 'Confirm action',
-                message: `Are you sure you want to delete the task: "${task.title}"?`
+                message: `Are you sure you want to delete the task: "${task.title}"?`,
             },
             autoFocus: false
         });
@@ -185,4 +192,17 @@ export class TasksComponent implements OnInit {
         }
     }
 
+    private openAddDialog() {
+        const task = new Task(null, '', false, null, this.selectedCategory);
+        const dialogRef = this.dialog.open(EditTaskDialogComponent, {
+            data: [task, 'Add Task', OperationType.ADD]
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.addTask.emit(task);
+            }
+        });
+
+    }
 }

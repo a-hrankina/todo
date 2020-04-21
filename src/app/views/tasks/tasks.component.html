@@ -70,7 +70,7 @@
 			</div>
 			
 			<div class="text-right col-6">
-				<button mat-raised-button color="primary">Add</button>
+				<button mat-raised-button color="primary" (click)="openAddDialog()">Add</button>
 			</div>
 		</div>
 	</div>
@@ -98,7 +98,7 @@
 					
 					<ng-container matColumnDef="title">
 						<th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
-						<td (click)="openEditTaskDialog(task)" class="col-title pointer"
+						<td (click)="openEditDialog(task)" class="col-title pointer"
 						    *matCellDef="let task" [class.completed]="task.completed"
 						    mat-cell>
 							{{task.title}}
@@ -140,7 +140,7 @@
 								<mat-icon aria-hidden="false">delete</mat-icon>
 							</button>
 							
-							<button (click)="openEditTaskDialog(task)" class="edit-icon" mat-icon-button>
+							<button (click)="openEditDialog(task)" class="edit-icon" mat-icon-button>
 								<mat-icon aria-hidden="false">edit</mat-icon>
 							</button>
 						</td>
