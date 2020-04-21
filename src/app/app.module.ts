@@ -6,6 +6,7 @@ import {CategoriesComponent} from './views/categories/categories.component';
 import {TasksComponent} from './views/tasks/tasks.component';
 import {
     MatButtonModule,
+    MatCheckboxModule,
     MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -51,7 +52,8 @@ import {EditCategoryDialogComponent} from './dialog/edit-category-dialog/edit-ca
         MatOptionModule,
         MatSelectModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatCheckboxModule
     ],
     providers: [],
     entryComponents: [

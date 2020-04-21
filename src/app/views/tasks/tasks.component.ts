@@ -5,6 +5,9 @@ import {DataHandlerService} from '../../service/data-handler.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-dialog.component';
+import {Priority} from '../../model/Priority';
+import {Category} from '../../model/Category';
+import {ConfirmDialogComponent} from '../../dialog/confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'app-tasks',
@@ -13,13 +16,14 @@ import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-d
 })
 export class TasksComponent implements OnInit {
 
-    private displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category'];
+    private displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category', 'operations', 'select'];
     private dataSource: MatTableDataSource<Task>;
 
     @ViewChild(MatPaginator, {static: false}) private paginator: MatPaginator;
     @ViewChild(MatSort, {static: false}) private sort: MatSort;
 
     private tasks: Task[];
+    private priorities: Priority[];
 
     @Input('tasks')
     private set setTasks(tasks: Task[]) {
@@ -27,11 +31,32 @@ export class TasksComponent implements OnInit {
         this.fillTable();
     }
 
+    @Input('priorities')
+    private set setPriorities(priorities: Priority[]) {
+        this.priorities = priorities;
+    }
+
+    @Output()
+    selectCategory = new EventEmitter<Category>();
+
     @Output()
     updateTask = new EventEmitter<Task>();
 
     @Output()
     deleteTask = new EventEmitter<Task>();
+
+    @Output()
+    filterByTitle = new EventEmitter<string>();
+
+    @Output()
+    filterByStatus = new EventEmitter<boolean>();
+
+    @Output()
+    filterByPriority = new EventEmitter<Priority>();
+
+    private searchTaskText: string;
+    private selectedStatusFilter: boolean = null;
+    private selectedPriorityFilter: Priority = null;
 
     constructor(private dataHandler: DataHandlerService,
                 private dialog: MatDialog) {
@@ -115,4 +140,49 @@ export class TasksComponent implements OnInit {
             }
         });
     }
+
+    private openDeleteDialog(task: Task) {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            maxWidth: '500px',
+            data: {
+                dialogTitle: 'Confirm action',
+                message: `Are you sure you want to delete the task: "${task.title}"?`
+            },
+            autoFocus: false
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.deleteTask.emit(task);
+            }
+        });
+    }
+
+    private onToggleStatus(task: Task) {
+        task.completed = !task.completed;
+        this.updateTask.emit(task);
+    }
+
+    private onSelectCategory(category: Category) {
+        this.selectCategory.emit(category);
+    }
+
+    private onFilterByTitle() {
+        this.filterByTitle.emit(this.searchTaskText);
+    }
+
+    private onFilterByStatus(value: boolean) {
+        if (value !== this.selectedStatusFilter) {
+            this.selectedStatusFilter = value;
+            this.filterByStatus.emit(this.selectedStatusFilter);
+        }
+    }
+
+    private onFilterByPriority(value: Priority) {
+        if (value !== this.selectedPriorityFilter) {
+            this.selectedPriorityFilter = value;
+            this.filterByPriority.emit(this.selectedPriorityFilter);
+        }
+    }
+
 }
