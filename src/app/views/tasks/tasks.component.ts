@@ -71,7 +71,7 @@ export class TasksComponent implements OnInit {
 
     ngOnInit() {
         this.dataSource = new MatTableDataSource();
-        this.fillTable();
+        this.onSelectCategory(null);
     }
 
     getPriorityColor(task: Task): string {

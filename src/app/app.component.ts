@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     private selectedCategory: Category = null;
 
     private searchTaskText = '';
+    private searchCategoryText = '';
     private priorityFilter: Priority;
     private statusFilter: boolean;
 
@@ -35,28 +36,28 @@ export class AppComponent implements OnInit {
         this.updateTasks();
     }
 
-    onUpdateTask(task: Task) {
+    private onUpdateTask(task: Task) {
         this.dataHandler.updateTask(task).subscribe(() =>
             this.updateTasks()
         );
     }
 
-    onDeleteTask(task: Task) {
+    private onDeleteTask(task: Task) {
         this.dataHandler.deleteTask(task.id).subscribe(() =>
             this.updateTasks()
         );
     }
 
-    onDeleteCategory(category: Category) {
-        this.dataHandler.deleteCategory(category.id).subscribe(() => {
+    private onDeleteCategory(category: Category) {
+        this.dataHandler.deleteCategory(category.id).subscribe(cat => {
             this.selectedCategory = null;
-            this.onSelectCategory(this.selectedCategory);
+            this.onSelectCategory(null);
         });
     }
 
-    onUpdateCategory(category: Category) {
+    private onUpdateCategory(category: Category) {
         this.dataHandler.updateCategory(category).subscribe(() => {
-            this.onSelectCategory(this.selectedCategory);
+            this.onSearchCategory(this.searchCategoryText);
         });
     }
 
@@ -98,5 +99,13 @@ export class AppComponent implements OnInit {
 
     private updateCategories() {
         this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
+    }
+
+    private onSearchCategory(title: string) {
+        this.searchCategoryText = title;
+
+        this.dataHandler.searchCategories(title).subscribe(categories => {
+            this.categories = categories;
+        });
     }
 }

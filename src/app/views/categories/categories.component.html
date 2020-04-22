@@ -9,12 +9,35 @@
 	</div>
 	<div class="sidebar-wrapper">
 		<ul class="nav">
+			
+			<div class="search-category-area">
+				<mat-form-field class="example-full-width">
+					<input #inputSearchCategory
+					       (keydown.escape)="searchCategoryTitle = ''; search()"
+					       (keyup)="search()"
+					       [(ngModel)]="searchCategoryTitle"
+					       matInput
+					       maxlength="256"
+					       placeholder="Category search"/>
+					
+					<button (click)="searchCategoryTitle = ''; search()"
+					        *ngIf="inputSearchCategory.value.trim().length > 0" aria-label="Clear"
+					        class="search-category-button size25 gray"
+					        mat-button
+					        mat-icon-button
+					        matSuffix>
+						<mat-icon>clear</mat-icon>
+					</button>
+				</mat-form-field>
+			</div>
+			
 			<li (click)="showTasksByCategory(null)" [class.active]="selectedCategory === null">
 				<a class="nav-link pointer">
 					<span class="all-category-title">All</span>
 				</a>
 			</li>
 			<div class="line"></div>
+			<div *ngIf="categories.length === 0" ><p class="not-found">Not found</p></div>
 			<li *ngFor="let category of categories; let index = index "
 			    [class.active]="category === selectedCategory"
 			    (click)="showTasksByCategory(category)"
