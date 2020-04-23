@@ -25,6 +25,10 @@ import {FormsModule} from '@angular/forms';
 import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
 import {TaskDatePipe} from './pipe/task-date.pipe';
 import {EditCategoryDialogComponent} from './dialog/edit-category-dialog/edit-category-dialog.component';
+import {FooterComponent} from './views/footer/footer.component';
+import {AboutDialogComponent} from './dialog/about-dialog/about-dialog.component';
+import {StatisticsComponent} from './views/statistics/statistics.component';
+import {HeaderComponent} from './views/header/header.component';
 
 
 @NgModule({
@@ -35,7 +39,11 @@ import {EditCategoryDialogComponent} from './dialog/edit-category-dialog/edit-ca
         EditTaskDialogComponent,
         ConfirmDialogComponent,
         TaskDatePipe,
-        EditCategoryDialogComponent
+        EditCategoryDialogComponent,
+        FooterComponent,
+        AboutDialogComponent,
+        StatisticsComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,
@@ -59,7 +67,8 @@ import {EditCategoryDialogComponent} from './dialog/edit-category-dialog/edit-ca
     entryComponents: [
         EditTaskDialogComponent,
         ConfirmDialogComponent,
-        EditCategoryDialogComponent
+        EditCategoryDialogComponent,
+        AboutDialogComponent
     ],
     bootstrap: [AppComponent]
 })
