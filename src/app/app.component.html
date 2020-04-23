@@ -11,7 +11,10 @@
 	
 	<div class="main-panel">
 		<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-			<app-header></app-header>
+			<app-header
+					[categoryName]="selectedCategory ? selectedCategory.title: 'All'"
+					(toggleStatistics)="toggleStatistics($event)"
+					[showStatistics]="showStatistics"></app-header>
 		</nav>
 		
 		<div class="content">
@@ -19,7 +22,8 @@
 				<app-statistics
 						[totalTasksInCategory]="totalTasksCountInCategory"
 						[completedTasksInCategory]="completedCountInCategory"
-						[uncompletedTasksInCategory]="uncompletedCountInCategory"></app-statistics>
+						[uncompletedTasksInCategory]="uncompletedCountInCategory"
+						[showStatistics]="showStatistics"></app-statistics>
 				<div class="row">
 					<div class="col-12">
 						<app-tasks

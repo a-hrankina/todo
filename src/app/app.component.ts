@@ -23,6 +23,8 @@ export class AppComponent implements OnInit {
     private priorityFilter: Priority;
     private statusFilter: boolean;
 
+    private showStatistics = true;
+
     private totalTasksCountInCategory: number;
     private completedCountInCategory: number;
     private uncompletedCountInCategory: number;
@@ -134,5 +136,9 @@ export class AppComponent implements OnInit {
                 this.uncompletedCountInCategory = array[2];
                 this.uncompletedTotalTasksCount = array[3];
             });
+    }
+
+    private toggleStatistics(showStatistics: boolean) {
+        this.showStatistics = showStatistics;
     }
 }
