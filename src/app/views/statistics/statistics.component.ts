@@ -1,15 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-statistics',
-  templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.css']
+    selector: 'app-statistics',
+    templateUrl: './statistics.component.html',
+    styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
 
-  constructor() { }
+    @Input()
+    totalTasksInCategory: number;
 
-  ngOnInit() {
-  }
+    @Input()
+    completedTasksInCategory: number;
+
+    @Input()
+    uncompletedTasksInCategory: number;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
 
 }

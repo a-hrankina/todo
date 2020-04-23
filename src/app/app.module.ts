@@ -29,6 +29,7 @@ import {FooterComponent} from './views/footer/footer.component';
 import {AboutDialogComponent} from './dialog/about-dialog/about-dialog.component';
 import {StatisticsComponent} from './views/statistics/statistics.component';
 import {HeaderComponent} from './views/header/header.component';
+import {StatisticsCardComponent} from './views/statistics/statistics-card/statistics-card.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {HeaderComponent} from './views/header/header.component';
         FooterComponent,
         AboutDialogComponent,
         StatisticsComponent,
-        HeaderComponent
+        HeaderComponent,
+        StatisticsCardComponent
     ],
     imports: [
         BrowserModule,
