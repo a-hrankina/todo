@@ -32,7 +32,7 @@ export class CategoryDAOArray implements CategoryDAO {
     }
 
     get(id: number): Observable<Category> {
-        return undefined;
+        return of(TestData.categories.find(category => category.id === id));
     }
 
     getAll(): Observable<Category[]> {

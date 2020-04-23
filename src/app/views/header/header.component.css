@@ -1,12 +1,8 @@
 .header-icon {
     cursor: pointer;
-    margin-right: 20px;
-}
-
-.settings button{
-    margin-right: 0;
+    margin-right: 0px;
 }
 
 .row {
-    width: 100%;
+    width: 100% !important;
 }

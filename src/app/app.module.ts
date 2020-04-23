@@ -30,6 +30,10 @@ import {AboutDialogComponent} from './dialog/about-dialog/about-dialog.component
 import {StatisticsComponent} from './views/statistics/statistics.component';
 import {HeaderComponent} from './views/header/header.component';
 import {StatisticsCardComponent} from './views/statistics/statistics-card/statistics-card.component';
+import {PrioritiesComponent} from './views/priorities/priorities.component';
+import {ColorPickerModule} from 'ngx-color-picker';
+import {SettingsDialogComponent} from './dialog/settings-dialog/settings-dialog.component';
+import {EditPriorityDialogComponent} from './dialog/edit-priority-dialog/edit-priority-dialog.component';
 
 
 @NgModule({
@@ -45,7 +49,10 @@ import {StatisticsCardComponent} from './views/statistics/statistics-card/statis
         AboutDialogComponent,
         StatisticsComponent,
         HeaderComponent,
-        StatisticsCardComponent
+        StatisticsCardComponent,
+        PrioritiesComponent,
+        SettingsDialogComponent,
+        EditPriorityDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -63,14 +70,17 @@ import {StatisticsCardComponent} from './views/statistics/statistics-card/statis
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        ColorPickerModule
     ],
     providers: [],
     entryComponents: [
         EditTaskDialogComponent,
         ConfirmDialogComponent,
         EditCategoryDialogComponent,
-        AboutDialogComponent
+        AboutDialogComponent,
+        SettingsDialogComponent,
+        EditPriorityDialogComponent
     ],
     bootstrap: [AppComponent]
 })
