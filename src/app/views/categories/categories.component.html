@@ -35,23 +35,24 @@
 				<li (click)="showTasksByCategory(null)" [class.active]="selectedCategory === null">
 					<a class="nav-link pointer">
 						<span class="all-category-title">All</span>
+						<span class="uncompleted-count"> {{uncompletedTotal}}</span>
 					</a>
 				</li>
 				<div class="line"></div>
 				<div *ngIf="categories.length === 0"><p class="not-found">Not found</p></div>
-				<li *ngFor="let category of categories; let index = index "
-				    [class.active]="category === selectedCategory"
-				    (click)="showTasksByCategory(category)"
-				    (mouseleave)="showEditIcon(null)"
-				    (mouseenter)="showEditIcon(index)"
+				<li (mouseleave)="showEditIcon(null)"
+				    *ngFor="let mapValue of selectedCategoryMap | keyvalue; let index = index"
+				    (click)="showTasksByCategory(mapValue.key)" (mouseenter)="showEditIcon(index)"
+				    [class.active]="mapValue.key === selectedCategory"
 				    class="nav-item pointer">
 					<a class="nav-link">
-						<span class="category-title">{{category.title}}</span>
+						<span class="category-title">{{mapValue.key.title}}</span>
 						<span class="edit-category-icon-area">
-						<mat-icon *ngIf="indexMouseMove === index"
-						          (click)="$event.stopPropagation(); openEditDialog(category)"
-						          class="edit-category-icon">edit</mat-icon>
-                    </span>
+							<mat-icon *ngIf="indexMouseMove === index"
+							          (click)="$event.stopPropagation(); openEditDialog(mapValue.key)"
+							          class="edit-category-icon">edit</mat-icon>
+                        </span>
+						<span class="uncompleted-count">{{mapValue.value}}</span>
 					</a>
 				</li>
 			</ul>
