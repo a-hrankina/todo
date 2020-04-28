@@ -5,6 +5,7 @@ import {Category} from './model/Category';
 import {Priority} from './model/Priority';
 import {zip} from 'rxjs';
 import {concatMap, map} from 'rxjs/operators';
+import {IntroService} from './service/intro.service';
 
 @Component({
     selector: 'app-root',
@@ -32,7 +33,8 @@ export class AppComponent implements OnInit {
     private uncompletedCountInCategory: number;
     private uncompletedTotalTasksCount: number;
 
-    constructor(private dataHandler: DataHandlerService) {
+    constructor(private dataHandler: DataHandlerService,
+                private introService: IntroService) {
     }
 
     ngOnInit(): void {
@@ -42,6 +44,8 @@ export class AppComponent implements OnInit {
         this.fillCategories();
 
         this.onSelectCategory(null);
+
+        this.introService.startIntroJS(true);
     }
 
     private fillCategories() {
