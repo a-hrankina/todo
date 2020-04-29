@@ -10,7 +10,7 @@ import {IntroService} from './service/intro.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styles: []
 })
 export class AppComponent implements OnInit {
     private categoryMap = new Map<Category, number>();
@@ -33,8 +33,14 @@ export class AppComponent implements OnInit {
     private uncompletedCountInCategory: number;
     private uncompletedTotalTasksCount: number;
 
+    private menuOpened: boolean;
+    private menuMode: string;
+    private menuPosition: string;
+    private showBackdrop: boolean;
+
     constructor(private dataHandler: DataHandlerService,
                 private introService: IntroService) {
+        this.setMenuValues();
     }
 
     ngOnInit(): void {
@@ -188,4 +194,20 @@ export class AppComponent implements OnInit {
     private toggleStatistics(showStatistics: boolean) {
         this.showStatistics = showStatistics;
     }
+
+    private onClosedMenu() {
+        this.menuOpened = false;
+    }
+
+    private setMenuValues() {
+        this.menuPosition = 'left';
+        this.menuOpened = true;
+        this.menuMode = 'push';
+        this.showBackdrop = false;
+    }
+
+    private toggleMenu() {
+        this.menuOpened = !this.menuOpened;
+    }
+
 }

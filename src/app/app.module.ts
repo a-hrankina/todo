@@ -34,7 +34,7 @@ import {PrioritiesComponent} from './views/priorities/priorities.component';
 import {ColorPickerModule} from 'ngx-color-picker';
 import {SettingsDialogComponent} from './dialog/settings-dialog/settings-dialog.component';
 import {EditPriorityDialogComponent} from './dialog/edit-priority-dialog/edit-priority-dialog.component';
-
+import {SidebarModule} from 'ng-sidebar';
 
 @NgModule({
     declarations: [
@@ -71,7 +71,8 @@ import {EditPriorityDialogComponent} from './dialog/edit-priority-dialog/edit-pr
         MatDatepickerModule,
         MatNativeDateModule,
         MatCheckboxModule,
-        ColorPickerModule
+        ColorPickerModule,
+        SidebarModule
     ],
     providers: [],
     entryComponents: [

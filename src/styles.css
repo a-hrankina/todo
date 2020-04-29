@@ -53,3 +53,13 @@
 app-header{
     width: 100%;
 }
+
+.ng-sidebar {
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.4);
+}
+
+.main-panel > .content {
+    margin-top: 30px;
+    background-color: transparent !important;
+}
+
