@@ -4,6 +4,7 @@ import {Category} from '../../model/Category';
 import {MatDialog} from '@angular/material';
 import {EditCategoryDialogComponent} from '../../dialog/edit-category-dialog/edit-category-dialog.component';
 import {OperationType} from '../../dialog/OperationType';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
     selector: 'app-categories',
@@ -45,8 +46,14 @@ export class CategoriesComponent implements OnInit {
     private indexMouseMove: number;
     private searchCategoryTitle: string;
 
+    private isMobile: boolean;
+    private isTablet: boolean;
+
     constructor(private dataHandler: DataHandlerService,
-                private dialog: MatDialog) {
+                private dialog: MatDialog,
+                private deviceService: DeviceDetectorService) {
+        this.isMobile = deviceService.isMobile();
+        this.isTablet = deviceService.isTablet();
     }
 
     ngOnInit() {
@@ -102,7 +109,7 @@ export class CategoriesComponent implements OnInit {
     }
 
     private search() {
-        if (this.searchCategoryTitle == null ) {
+        if (this.searchCategoryTitle == null) {
             return;
         }
 

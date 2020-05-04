@@ -35,6 +35,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
 import {SettingsDialogComponent} from './dialog/settings-dialog/settings-dialog.component';
 import {EditPriorityDialogComponent} from './dialog/edit-priority-dialog/edit-priority-dialog.component';
 import {SidebarModule} from 'ng-sidebar';
+import {DeviceDetectorModule} from 'ngx-device-detector';
 
 @NgModule({
     declarations: [
@@ -72,7 +73,8 @@ import {SidebarModule} from 'ng-sidebar';
         MatNativeDateModule,
         MatCheckboxModule,
         ColorPickerModule,
-        SidebarModule
+        SidebarModule,
+        DeviceDetectorModule.forRoot()
     ],
     providers: [],
     entryComponents: [
