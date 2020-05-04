@@ -9,6 +9,7 @@ import {Priority} from '../../model/Priority';
 import {Category} from '../../model/Category';
 import {ConfirmDialogComponent} from '../../dialog/confirm-dialog/confirm-dialog.component';
 import {OperationType} from '../../dialog/OperationType';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
     selector: 'app-tasks',
@@ -65,8 +66,12 @@ export class TasksComponent implements OnInit {
     private selectedStatusFilter: boolean = null;
     private selectedPriorityFilter: Priority = null;
 
+    private isMobile: boolean;
+
     constructor(private dataHandler: DataHandlerService,
-                private dialog: MatDialog) {
+                private dialog: MatDialog,
+                private deviceService: DeviceDetectorService) {
+        this.isMobile = this.deviceService.isMobile();
     }
 
     ngOnInit() {
@@ -96,6 +101,7 @@ export class TasksComponent implements OnInit {
 
         this.addTableObjects();
 
+        // @ts-ignore
         this.dataSource.sortingDataAccessor = (task, colName) => {
             switch (colName) {
                 case 'priority':
@@ -204,5 +210,13 @@ export class TasksComponent implements OnInit {
             }
         });
 
+    }
+
+    private getMobilePriorityBgColor(task: Task) {
+        if (task.priority != null && !task.completed) {
+            return task.priority.color;
+        }
+
+        return 'none';
     }
 }
