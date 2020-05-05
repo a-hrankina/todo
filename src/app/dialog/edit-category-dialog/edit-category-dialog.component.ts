@@ -10,9 +10,9 @@ import {OperationType} from '../OperationType';
 })
 export class EditCategoryDialogComponent implements OnInit {
 
-    private dialogTitle: string;
-    private categoryTitle: string;
-    private operationType: OperationType;
+    dialogTitle: string;
+    categoryTitle: string;
+    operationType: OperationType;
 
     constructor(private dialogRef: MatDialogRef<EditCategoryDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) private data: [string, string, OperationType],
@@ -26,15 +26,15 @@ export class EditCategoryDialogComponent implements OnInit {
         this.operationType = this.data[2];
     }
 
-    private onConfirm() {
+    onConfirm() {
         this.dialogRef.close(this.categoryTitle);
     }
 
-    private onCancel() {
+    onCancel() {
         this.dialogRef.close(false);
     }
 
-    private delete() {
+    delete() {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             maxWidth: '500px',
             data: {
@@ -51,7 +51,7 @@ export class EditCategoryDialogComponent implements OnInit {
         });
     }
 
-    private canDelete(): boolean {
+    canDelete(): boolean {
         return this.operationType === OperationType.EDIT;
     }
 

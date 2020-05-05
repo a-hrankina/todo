@@ -25,7 +25,7 @@ export class PrioritiesComponent implements OnInit {
     deletePriority = new EventEmitter<Priority>();
 
     @Input()
-    private priorities: [Priority];
+    priorities: [Priority];
 
     constructor(private dialog: MatDialog
     ) {
@@ -52,7 +52,7 @@ export class PrioritiesComponent implements OnInit {
         });
     }
 
-    private onAddPriority(): void {
+    onAddPriority(): void {
         const dialogRef = this.dialog.open(EditCategoryDialogComponent, {
             data: ['', 'Add priority', OperationType.ADD],
             width: '400px'
@@ -66,7 +66,7 @@ export class PrioritiesComponent implements OnInit {
         });
     }
 
-    private onEditPriority(priority: Priority): void {
+    onEditPriority(priority: Priority): void {
         const dialogRef = this.dialog.open(
             EditPriorityDialogComponent, {
                 data: [priority.title, 'Edit priority', OperationType.EDIT]

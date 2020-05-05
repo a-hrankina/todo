@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit {
     @Input()
     selectedCategory: Category;
 
-    private selectedCategoryMap: Map<Category, number>;
+    selectedCategoryMap: Map<Category, number>;
 
     @Input('categoryMap')
     set setCategoryMap(categoryMap: Map<Category, number>) {
@@ -43,11 +43,11 @@ export class CategoriesComponent implements OnInit {
     @Output()
     searchCategory = new EventEmitter<string>();
 
-    private indexMouseMove: number;
-    private searchCategoryTitle: string;
+    indexMouseMove: number;
+    searchCategoryTitle: string;
 
-    private isMobile: boolean;
-    private isTablet: boolean;
+    isMobile: boolean;
+    isTablet: boolean;
 
     constructor(private dataHandler: DataHandlerService,
                 private dialog: MatDialog,
@@ -59,7 +59,7 @@ export class CategoriesComponent implements OnInit {
     ngOnInit() {
     }
 
-    private showTasksByCategory(category: Category): void {
+    showTasksByCategory(category: Category): void {
         if (this.selectedCategory === category) {
             return;
         }
@@ -68,11 +68,11 @@ export class CategoriesComponent implements OnInit {
         this.selectCategory.emit(this.selectedCategory);
     }
 
-    private showEditIcon(index: number): void {
+    showEditIcon(index: number): void {
         this.indexMouseMove = index;
     }
 
-    private openEditDialog(category: Category) {
+    openEditDialog(category: Category) {
         const dialogRef = this.dialog.open(
             EditCategoryDialogComponent, {
                 data: [category.title, 'Edit Category', OperationType.EDIT],
@@ -94,7 +94,7 @@ export class CategoriesComponent implements OnInit {
         });
     }
 
-    private openAddDialog() {
+    openAddDialog() {
         const dialogRef = this.dialog.open(
             EditCategoryDialogComponent, {
                 data: ['', 'Add Category', OperationType.ADD],
@@ -108,7 +108,7 @@ export class CategoriesComponent implements OnInit {
         });
     }
 
-    private search() {
+    search() {
         if (this.searchCategoryTitle == null) {
             return;
         }

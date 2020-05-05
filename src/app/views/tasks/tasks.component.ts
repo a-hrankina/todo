@@ -18,14 +18,14 @@ import {DeviceDetectorService} from 'ngx-device-detector';
 })
 export class TasksComponent implements OnInit {
 
-    private displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category', 'operations', 'select'];
-    private dataSource: MatTableDataSource<Task>;
+    displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category', 'operations', 'select'];
+    dataSource: MatTableDataSource<Task>;
 
     @ViewChild(MatPaginator, {static: false}) private paginator: MatPaginator;
     @ViewChild(MatSort, {static: false}) private sort: MatSort;
 
-    private tasks: Task[];
-    private priorities: Priority[];
+    tasks: Task[];
+    priorities: Priority[];
 
     @Input('tasks')
     private set setTasks(tasks: Task[]) {
@@ -62,11 +62,11 @@ export class TasksComponent implements OnInit {
     @Output()
     filterByPriority = new EventEmitter<Priority>();
 
-    private searchTaskText: string;
-    private selectedStatusFilter: boolean = null;
-    private selectedPriorityFilter: Priority = null;
+    searchTaskText: string;
+    selectedStatusFilter: boolean = null;
+    selectedPriorityFilter: Priority = null;
 
-    private isMobile: boolean;
+    isMobile: boolean;
 
     constructor(private dataHandler: DataHandlerService,
                 private dialog: MatDialog,
@@ -117,12 +117,12 @@ export class TasksComponent implements OnInit {
 
     }
 
-    private addTableObjects(): void {
+    addTableObjects(): void {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     }
 
-    private openEditDialog(task: Task): void {
+    openEditDialog(task: Task): void {
         const dialogRef = this.dialog.open(
             EditTaskDialogComponent,
             {data: [task, 'Edit Task', OperationType.EDIT], autoFocus: false}
@@ -154,7 +154,7 @@ export class TasksComponent implements OnInit {
         });
     }
 
-    private openDeleteDialog(task: Task) {
+    openDeleteDialog(task: Task) {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             maxWidth: '500px',
             data: {
@@ -171,34 +171,34 @@ export class TasksComponent implements OnInit {
         });
     }
 
-    private onToggleStatus(task: Task) {
+    onToggleStatus(task: Task) {
         task.completed = !task.completed;
         this.updateTask.emit(task);
     }
 
-    private onSelectCategory(category: Category) {
+    onSelectCategory(category: Category) {
         this.selectCategory.emit(category);
     }
 
-    private onFilterByTitle() {
+    onFilterByTitle() {
         this.filterByTitle.emit(this.searchTaskText);
     }
 
-    private onFilterByStatus(value: boolean) {
+    onFilterByStatus(value: boolean) {
         if (value !== this.selectedStatusFilter) {
             this.selectedStatusFilter = value;
             this.filterByStatus.emit(this.selectedStatusFilter);
         }
     }
 
-    private onFilterByPriority(value: Priority) {
+    onFilterByPriority(value: Priority) {
         if (value !== this.selectedPriorityFilter) {
             this.selectedPriorityFilter = value;
             this.filterByPriority.emit(this.selectedPriorityFilter);
         }
     }
 
-    private openAddDialog() {
+    openAddDialog() {
         const task = new Task(null, '', false, null, this.selectedCategory);
         const dialogRef = this.dialog.open(EditTaskDialogComponent, {
             data: [task, 'Add Task', OperationType.ADD]
@@ -212,7 +212,7 @@ export class TasksComponent implements OnInit {
 
     }
 
-    private getMobilePriorityBgColor(task: Task) {
+    getMobilePriorityBgColor(task: Task) {
         if (task.priority != null && !task.completed) {
             return task.priority.color;
         }

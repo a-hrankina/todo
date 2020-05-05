@@ -14,33 +14,33 @@ import {DeviceDetectorService} from 'ngx-device-detector';
     styles: []
 })
 export class AppComponent implements OnInit {
-    private categoryMap = new Map<Category, number>();
+    categoryMap = new Map<Category, number>();
 
-    private categories: Category[];
-    private tasks: Task[];
-    private priorities: Priority[];
+    categories: Category[];
+    tasks: Task[];
+    priorities: Priority[];
 
-    private selectedCategory: Category = null;
+    selectedCategory: Category = null;
 
-    private searchTaskText = '';
-    private searchCategoryText = '';
-    private priorityFilter: Priority;
-    private statusFilter: boolean;
+    searchTaskText = '';
+    searchCategoryText = '';
+    priorityFilter: Priority;
+    statusFilter: boolean;
 
-    private showStatistics = true;
+    showStatistics = true;
 
-    private totalTasksCountInCategory: number;
-    private completedCountInCategory: number;
-    private uncompletedCountInCategory: number;
-    private uncompletedTotalTasksCount: number;
+    totalTasksCountInCategory: number;
+    completedCountInCategory: number;
+    uncompletedCountInCategory: number;
+    uncompletedTotalTasksCount: number;
 
-    private menuOpened: boolean;
-    private menuMode: string;
-    private menuPosition: string;
-    private showBackdrop: boolean;
+    menuOpened: boolean;
+    menuMode: string;
+    menuPosition: string;
+    showBackdrop: boolean;
 
-    private isMobile: boolean;
-    private isTablet: boolean;
+    isMobile: boolean;
+    isTablet: boolean;
 
     constructor(private dataHandler: DataHandlerService,
                 private introService: IntroService,
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit {
         });
     }
 
-    private onAddCategory(title: string) {
+    onAddCategory(title: string) {
         this.dataHandler.addCategory(title).subscribe(() => this.updateCategories());
     }
 
@@ -86,13 +86,13 @@ export class AppComponent implements OnInit {
         this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
     }
 
-    private onUpdateCategory(category: Category) {
+    onUpdateCategory(category: Category) {
         this.dataHandler.updateCategory(category).subscribe(() => {
             this.onSearchCategory(this.searchCategoryText);
         });
     }
 
-    private onDeleteCategory(category: Category) {
+    onDeleteCategory(category: Category) {
         this.dataHandler.deleteCategory(category.id).subscribe(c => {
             this.selectedCategory = null;
             this.categoryMap.delete(c);
@@ -101,12 +101,12 @@ export class AppComponent implements OnInit {
         });
     }
 
-    private onSelectCategory(category: Category) {
+    onSelectCategory(category: Category) {
         this.selectedCategory = category;
         this.updateTasksAndStatistics();
     }
 
-    private onUpdateTask(task: Task): void {
+    onUpdateTask(task: Task): void {
         this.dataHandler.updateTask(task).subscribe(() => {
             this.fillCategories();
             this.updateTasksAndStatistics();
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    private onDeleteTask(task: Task) {
+    onDeleteTask(task: Task) {
         this.dataHandler.deleteTask(task.id).pipe(
             // tslint:disable-next-line:no-shadowed-variable
             concatMap(task => {
@@ -131,17 +131,17 @@ export class AppComponent implements OnInit {
         });
     }
 
-    private onSearchTasks(searchString: string) {
+    onSearchTasks(searchString: string) {
         this.searchTaskText = searchString;
         this.updateTasks();
     }
 
-    private onFilterTasksByStatus(status: boolean) {
+    onFilterTasksByStatus(status: boolean) {
         this.statusFilter = status;
         this.updateTasks();
     }
 
-    private onFilterTasksByPriority(priority: Priority) {
+    onFilterTasksByPriority(priority: Priority) {
         this.priorityFilter = priority;
         this.updateTasks();
     }
@@ -157,7 +157,7 @@ export class AppComponent implements OnInit {
         });
     }
 
-    private onAddTask(task: Task) {
+    onAddTask(task: Task) {
         this.dataHandler.addTask(task).pipe(
             // tslint:disable-next-line:no-shadowed-variable
             concatMap(task => {
@@ -174,7 +174,7 @@ export class AppComponent implements OnInit {
         });
     }
 
-    private onSearchCategory(title: string) {
+    onSearchCategory(title: string) {
         this.searchCategoryText = title;
 
         this.dataHandler.searchCategories(title).subscribe(categories => {
@@ -188,7 +188,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    private updateStatistics() {
+    updateStatistics() {
         zip(
             this.dataHandler.getTotalCountInCategory(this.selectedCategory),
             this.dataHandler.getCompletedCountInCategory(this.selectedCategory),
@@ -203,15 +203,15 @@ export class AppComponent implements OnInit {
             });
     }
 
-    private toggleStatistics(showStatistics: boolean) {
+    toggleStatistics(showStatistics: boolean) {
         this.showStatistics = showStatistics;
     }
 
-    private onClosedMenu() {
+    onClosedMenu() {
         this.menuOpened = false;
     }
 
-    private setMenuValues() {
+    setMenuValues() {
         this.menuPosition = 'left';
 
         if (this.isMobile) {
@@ -225,7 +225,7 @@ export class AppComponent implements OnInit {
         }
     }
 
-    private toggleMenu() {
+    toggleMenu() {
         this.menuOpened = !this.menuOpened;
     }
 

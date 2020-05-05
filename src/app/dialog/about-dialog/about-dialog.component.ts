@@ -8,8 +8,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class AboutDialogComponent implements OnInit {
 
-    private dialogTitle: string;
-    private message: string;
+    dialogTitle: string;
+    message: string;
 
     constructor(
         private dialogRef: MatDialogRef<AboutDialogComponent>,
@@ -22,7 +22,7 @@ export class AboutDialogComponent implements OnInit {
     ngOnInit() {
     }
 
-    private onConfirm(): void {
+    onConfirm(): void {
         this.dialogRef.close(true);
     }
 }

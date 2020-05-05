@@ -10,9 +10,9 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 })
 export class EditPriorityDialogComponent implements OnInit {
 
-    private dialogTitle: string;
-    private priorityTitle: string;
-    private operationType: OperationType;
+    dialogTitle: string;
+    priorityTitle: string;
+    operationType: OperationType;
 
     constructor(
         private dialogRef: MatDialogRef<EditPriorityDialogComponent>,
@@ -27,15 +27,15 @@ export class EditPriorityDialogComponent implements OnInit {
         this.operationType = this.data[2];
     }
 
-    private onConfirm(): void {
+    onConfirm(): void {
         this.dialogRef.close(this.priorityTitle);
     }
 
-    private onCancel(): void {
+    onCancel(): void {
         this.dialogRef.close(false);
     }
 
-    private delete(): void {
+    delete(): void {
         const dialogRef = this.dialog.open(
             ConfirmDialogComponent, {
                 maxWidth: '500px',
@@ -53,7 +53,7 @@ export class EditPriorityDialogComponent implements OnInit {
         });
     }
 
-    private canDelete(): boolean {
+    canDelete(): boolean {
         return this.operationType === OperationType.EDIT;
     }
 

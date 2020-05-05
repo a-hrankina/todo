@@ -8,9 +8,9 @@ import {MatDialog} from '@angular/material';
     styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-    private year: Date;
-    private site = 'http://localhost:4200';
-    private siteName = 'Todo';
+    year: Date;
+    site = 'http://localhost:4200';
+    siteName = 'Todo';
 
     constructor(private dialog: MatDialog) {
     }
@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
         this.year = new Date();
     }
 
-    private openAboutDialog() {
+    openAboutDialog() {
         this.dialog.open(AboutDialogComponent,
             {
                 autoFocus: false,

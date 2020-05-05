@@ -10,7 +10,7 @@ import {Priority} from '../../model/Priority';
 })
 export class SettingsDialogComponent implements OnInit {
 
-    private priorities: Priority[];
+    priorities: Priority[];
 
     constructor(
         private dialogRef: MatDialogRef<SettingsDialogComponent>,
@@ -22,19 +22,19 @@ export class SettingsDialogComponent implements OnInit {
         this.dataHandler.getAllPriorities().subscribe(priorities => this.priorities = priorities);
     }
 
-    private onClose() {
+    onClose() {
         this.dialogRef.close(false);
     }
 
-    private onAddPriority(priority: Priority): void {
+    onAddPriority(priority: Priority): void {
         this.dataHandler.addPriority(priority).subscribe();
     }
 
-    private onDeletePriority(priority: Priority): void {
+    onDeletePriority(priority: Priority): void {
         this.dataHandler.deletePriority(priority.id).subscribe();
     }
 
-    private onUpdatePriority(priority: Priority): void {
+    onUpdatePriority(priority: Priority): void {
         this.dataHandler.updatePriority(priority).subscribe();
     }
 }

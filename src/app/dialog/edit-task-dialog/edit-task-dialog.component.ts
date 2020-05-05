@@ -14,17 +14,17 @@ import {OperationType} from '../OperationType';
 })
 export class EditTaskDialogComponent implements OnInit {
 
-    private categories: Category[];
-    private priorities: Priority[];
+    categories: Category[];
+    priorities: Priority[];
 
-    private dialogTitle: string;
-    private task: Task;
-    private operationType: OperationType;
+    dialogTitle: string;
+    task: Task;
+    operationType: OperationType;
 
-    private tmpTitle: string;
-    private tmpCategory: Category;
-    private tmpPriority: Priority;
-    private tmpDate: Date;
+    tmpTitle: string;
+    tmpCategory: Category;
+    tmpPriority: Priority;
+    tmpDate: Date;
 
     constructor(
         private dialogRef: MatDialogRef<EditTaskDialogComponent>,
@@ -48,7 +48,7 @@ export class EditTaskDialogComponent implements OnInit {
         this.dataHandler.getAllPriorities().subscribe(priorities => this.priorities = priorities);
     }
 
-    private onConfirm(): void {
+    onConfirm(): void {
         this.task.title = this.tmpTitle;
         this.task.category = this.tmpCategory;
         this.task.priority = this.tmpPriority;
@@ -57,11 +57,11 @@ export class EditTaskDialogComponent implements OnInit {
         this.dialogRef.close(this.task);
     }
 
-    private onCancel(): void {
+    onCancel(): void {
         this.dialogRef.close(null);
     }
 
-    private delete(): void {
+    delete(): void {
         const dialogRef = this.dialog.open(
             ConfirmDialogComponent, {
                 maxWidth: '500px',
@@ -80,19 +80,19 @@ export class EditTaskDialogComponent implements OnInit {
         });
     }
 
-    private complete(): void {
+    complete(): void {
         this.dialogRef.close('complete');
     }
 
-    private activate(): void {
+    activate(): void {
         this.dialogRef.close('activate');
     }
 
-    private canDelete(): boolean {
+    canDelete(): boolean {
         return this.operationType === OperationType.EDIT;
     }
 
-    private canActivateDesactivate(): boolean {
+    canActivateDesactivate(): boolean {
         return this.operationType === OperationType.EDIT;
     }
 }
